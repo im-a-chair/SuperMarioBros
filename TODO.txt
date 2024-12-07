@@ -1,10 +1,21 @@
-AUDIO!!!!
 Idea for later: chance for enemy to be replaced by a gold or silver variant and give 5-10 coins (or more) on death(of the enemy)
 
+TODO:
+    (Make SDL namespace for SDL abstrations)
+    make IMG namespace for SDL_image abstrations
+    make Mix/MUS/Audio namespace for SDL_mixer abstrations
 
-  /************************/
- /-----FULL PROGRAM: -----/
-/......................../
+    make Game class as parent class to be used by the main function
+    make Mario class for mario
+
+
+
+
+_____________________________________________________________________________________________________________________________
+
+  /*****************************/
+ /-----FULL PROGRAM(Old): -----/
+/............................./
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
