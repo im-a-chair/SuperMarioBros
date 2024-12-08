@@ -3,6 +3,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "Engine.hpp"
+
 class Game{
 public:
     Game();
@@ -11,6 +13,7 @@ public:
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
+    Engine::Input input;
 };
 
 #endif

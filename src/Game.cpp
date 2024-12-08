@@ -28,4 +28,32 @@ Game::~Game(){
     SDL_Quit();
 }
 
-void Game::Loop(){}
+void Game::Loop(){
+    bool running = true;
+    SDL_Event event;
+    while(running){
+        //Input:
+        while(SDL_PollEvent(&event)){
+            switch(event.type){
+                case SDL_QUIT:
+                    running = false;
+                    break;
+                //case SDL_KEYDOWN:
+                //case SDL_KEYUP:
+                default:
+                    break;
+            }
+        }
+        
+        SDL_RenderClear(renderer);
+
+        //Update:
+        //Mario.Update(&Input);
+
+        SDL_RenderPresent(renderer);
+
+        //Update/Play Music:
+
+        SDL_Delay(1000/60);
+    }
+}
