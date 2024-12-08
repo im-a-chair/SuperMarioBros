@@ -11,6 +11,7 @@ public:
     ~Game();
     void Loop();
 private:
+    bool Paused;
     SDL_Window* window;
     SDL_Renderer* renderer;
     Engine::Input input;
