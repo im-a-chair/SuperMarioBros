@@ -5,17 +5,17 @@
 
 #include "IMG.hpp"
 
-Mario::Mario(){
+Mario::Mario(int scale){
     Velocity = {0, 0};
-    src = {0, 0, 18, 18};
-    dst = {0, 0, 18 * IMG::Scale, 18 * IMG::Scale};
+    src = {72, 72, 18, 18};
+    dst = {300, 300, 18 * scale, 18 * scale};
     Animation = IDLE;
     PowerUp = SMALL;
 }
 
 Mario::~Mario(){}
 
-void Mario::Update(SDL_Renderer* renderer, Engine::Input input){
+void Mario::Update(SDL_Renderer* renderer, Engine::Input input, IMG img){
     //Set Constant Movements
         //Gravity:
     Velocity.y = Engine::Gravity;   //TODO: when underwater, make gravity less
@@ -51,5 +51,5 @@ void Mario::Update(SDL_Renderer* renderer, Engine::Input input){
 
     
     //Render
-    SDL_RenderCopy(renderer, IMG::MarioTex, &src, &dst);
+    SDL_RenderCopy(renderer, img.MarioTex, &src, &dst);
 }

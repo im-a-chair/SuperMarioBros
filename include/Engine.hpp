@@ -15,7 +15,7 @@ namespace Engine{
         bool START;
         bool SELECT;
     }Input;
-    const char* BasePath = SDL_GetBasePath();
+    //const char* BasePath = SDL_GetBasePath();   //Multiple definition
     const int Gravity = 0;
     const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
 }

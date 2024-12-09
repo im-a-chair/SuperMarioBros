@@ -5,14 +5,16 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-namespace IMG{
+class IMG{
+public:
+    IMG(SDL_Renderer* renderer, int scale);
+    ~IMG();
+
     int Scale;
     SDL_Texture* MarioTex;
     SDL_Texture* BlockTex;
     SDL_Texture* EnemyTex;
+};
 
-    void Init_IMG(SDL_Renderer* renderer);
-    void Quit_IMG();
-}
 
 #endif

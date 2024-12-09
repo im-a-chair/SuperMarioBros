@@ -32,7 +32,8 @@ Game::~Game(){
 
 void Game::Loop(){
     if(!Paused){
-        Mario mario;
+        IMG img(renderer, 4);
+        Mario mario(img.Scale);
 
         bool running = true;
         SDL_Event event;
@@ -54,7 +55,7 @@ void Game::Loop(){
             SDL_RenderClear(renderer);
 
             //Update:
-            mario.Update(renderer, input);
+            mario.Update(renderer, input, img);
 
             SDL_RenderPresent(renderer);
 

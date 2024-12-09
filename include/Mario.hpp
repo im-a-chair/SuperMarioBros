@@ -4,12 +4,13 @@
 
 #include <SDL2/SDL.h>
 #include "Engine.hpp"
+#include "IMG.hpp"
 
 class Mario{
 public:
-    Mario();
+    Mario(int scale);
     ~Mario();
-    void Update(SDL_Renderer* renderer, Engine::Input input);
+    void Update(SDL_Renderer* renderer, Engine::Input input, IMG img);
 private:
     SDL_Point Velocity;
     SDL_Rect src;
