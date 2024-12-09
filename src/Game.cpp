@@ -22,6 +22,10 @@ Game::Game(){
     if(renderer == NULL){
         printf("ERROR: SDL_CreateRenderer Failed; %s\n", SDL_GetError());
     }
+
+    Paused = false;
+
+    input = {false, false, false, false, false, false, false, false};
 }
 
 Game::~Game(){
@@ -31,12 +35,12 @@ Game::~Game(){
 }
 
 void Game::Loop(){
-    if(!Paused){
-        IMG img(renderer, 4);
-        Mario mario(img.Scale);
+    IMG img(renderer, 4);
+    Mario mario(img.Scale);
 
-        bool running = true;
-        SDL_Event event;
+    bool running = true;
+    SDL_Event event;
+    if(!Paused){
         while(running){
             //Input:
             while(SDL_PollEvent(&event)){

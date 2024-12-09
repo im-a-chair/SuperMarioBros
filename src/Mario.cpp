@@ -7,7 +7,7 @@
 
 Mario::Mario(int scale){
     Velocity = {0, 0};
-    src = {72, 72, 18, 18};
+    src = {0, 72, 18, 18};
     dst = {300, 300, 18 * scale, 18 * scale};
     Animation = IDLE;
     PowerUp = SMALL;
