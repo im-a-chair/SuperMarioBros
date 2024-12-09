@@ -1,5 +1,6 @@
-#ifndef _GAME_HPP_
-#define _GAME_HPP_
+#pragma once
+#ifndef _SUPER_MARIO_BROS_GAME_HPP_
+#define _SUPER_MARIO_BROS_GAME_HPP_
 
 #include <SDL2/SDL.h>
 

@@ -1,5 +1,6 @@
-#ifndef _MARIO_HPP_
-#define _MARIO_HPP_
+#pragma once
+#ifndef _SUPER_MARIO_BROS_MARIO_HPP_
+#define _SUPER_MARIO_BROS_MARIO_HPP_
 
 #include <SDL2/SDL.h>
 #include "Engine.hpp"

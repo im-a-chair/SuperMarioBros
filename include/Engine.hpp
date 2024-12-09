@@ -1,5 +1,6 @@
-#ifndef _ENGINE_HPP_
-#define _ENGINE_HPP_
+#pragma once
+#ifndef _SUPER_MARIO_BROS_ENGINE_HPP_
+#define _SUPER_MARIO_BROS_ENGINE_HPP_
 
 #include <SDL2/SDL.h>
 
@@ -16,6 +17,7 @@ namespace Engine{
     }Input;
     const char* BasePath = SDL_GetBasePath();
     const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
 }
 
 #endif

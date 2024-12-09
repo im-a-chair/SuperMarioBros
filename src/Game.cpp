@@ -1,7 +1,9 @@
+#include "Game.hpp"
+
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-#include "Game.hpp"
+#include "Mario.hpp"
 
 Game::Game(){
     //initialize:
@@ -10,7 +12,7 @@ Game::Game(){
     }
 
     //Make Window:
-    window = SDL_CreateWindow("Title", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Title", Engine::Screen.x, Engine::Screen.y, Engine::Screen.w, Engine::Screen.h, SDL_WINDOW_SHOWN);
     if(window == NULL){
         printf("ERROR: SDL_CreateWindow Failed; %s\n", SDL_GetError());
     }
@@ -30,6 +32,8 @@ Game::~Game(){
 
 void Game::Loop(){
     if(!Paused){
+        Mario mario;
+
         bool running = true;
         SDL_Event event;
         while(running){
@@ -50,7 +54,7 @@ void Game::Loop(){
             SDL_RenderClear(renderer);
 
             //Update:
-            //Mario.Update(&Input);
+            mario.Update(renderer, input);
 
             SDL_RenderPresent(renderer);
 

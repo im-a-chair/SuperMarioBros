@@ -1,0 +1,478 @@
+#include <stdio.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
+
+#pragma once
+#ifndef _GAME_HPP_
+#define _GAME_HPP_
+
+#include <SDL2/SDL.h>
+
+#pragma once
+#ifndef _ENGINE_HPP_
+#define _ENGINE_HPP_
+
+#include <SDL2/SDL.h>
+
+namespace Engine{
+    typedef struct Input{
+        bool UP;
+        bool DOWN;
+        bool LEFT;
+        bool RIGHT;
+        bool A;
+        bool B;
+        bool START;
+        bool SELECT;
+    }Input;
+    const char* BasePath = SDL_GetBasePath();
+    const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
+}
+
+#endif
+
+class Game{
+public:
+    Game();
+    ~Game();
+    void Loop();
+private:
+    bool Paused;
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    Engine::Input input;
+};
+
+#endif
+
+int main(int Args, char** Argv){
+    Game game;
+    game.Loop();
+    return 0;
+}
+
+/*--------------------------------------------------------------------------------*/
+
+#pragma once
+#ifndef _IMG_HPP_
+#define _IMG_HPP_
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+#pragma once
+#ifndef _ENGINE_HPP_
+#define _ENGINE_HPP_
+
+#include <SDL2/SDL.h>
+
+namespace Engine{
+    typedef struct Input{
+        bool UP;
+        bool DOWN;
+        bool LEFT;
+        bool RIGHT;
+        bool A;
+        bool B;
+        bool START;
+        bool SELECT;
+    }Input;
+    const char* BasePath = SDL_GetBasePath();
+    const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
+}
+
+#endif
+
+namespace IMG{
+    int Scale;
+    SDL_Texture* MarioTex;
+    SDL_Texture* BlockTex;
+    SDL_Texture* EnemyTex;
+
+    void Init_IMG(SDL_Renderer* renderer);
+    void Quit_IMG();
+}
+
+#endif
+
+void IMG::Init_IMG(SDL_Renderer* renderer){
+    if(IMG_Init(IMG_INIT_PNG) < 0){
+        printf("ERROR: IMG_Init Failed; %s\n", SDL_GetError());
+    }
+    const char* t_basepath = Engine::BasePath;
+
+    //Load Mario's Textures:
+    char* t_path = strcat((char*)"res/Textures/mario.png", t_basepath);
+    MarioTex = IMG_LoadTexture(renderer, t_path);
+    if(MarioTex == NULL){
+        printf("ERROR: IMG_LoadTexture Failed on Mario; %s\n", IMG_GetError());
+    }
+
+    //Load the Tile Textures:
+    t_path = strcat((char*)"res/Textures/blocks.png", t_basepath);
+    BlockTex = IMG_LoadTexture(renderer, t_path);
+    if(BlockTex == NULL){
+        printf("ERROR: IMG_LoadTexture Failed on Block; %s\n", IMG_GetError());
+    }
+
+    //Load the Enemy Textures:
+    t_path = strcat((char*)"res/Textures/enemies.png", t_basepath);
+    EnemyTex = IMG_LoadTexture(renderer, t_path);
+    if(EnemyTex == NULL){
+        printf("ERROR: IMG_LoadTexture Failed on Enemy; %s\n", IMG_GetError());
+    }
+}
+
+void IMG::Quit_IMG(){
+    SDL_DestroyTexture(MarioTex);
+    SDL_DestroyTexture(BlockTex);
+    SDL_DestroyTexture(EnemyTex);
+    IMG_Quit();
+}
+
+/*--------------------------------------------------------------------------------*/
+
+#pragma once
+#ifndef _GAME_HPP_
+#define _GAME_HPP_
+
+#include <SDL2/SDL.h>
+
+#pragma once
+#ifndef _ENGINE_HPP_
+#define _ENGINE_HPP_
+
+#include <SDL2/SDL.h>
+
+namespace Engine{
+    typedef struct Input{
+        bool UP;
+        bool DOWN;
+        bool LEFT;
+        bool RIGHT;
+        bool A;
+        bool B;
+        bool START;
+        bool SELECT;
+    }Input;
+    const char* BasePath = SDL_GetBasePath();
+    const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
+}
+
+#endif
+
+class Game{
+public:
+    Game();
+    ~Game();
+    void Loop();
+private:
+    bool Paused;
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    Engine::Input input;
+};
+
+#endif
+#pragma once
+#ifndef _MARIO_HPP_
+#define _MARIO_HPP_
+
+#include <SDL2/SDL.h>
+#pragma once
+#ifndef _ENGINE_HPP_
+#define _ENGINE_HPP_
+
+#include <SDL2/SDL.h>
+
+namespace Engine{
+    typedef struct Input{
+        bool UP;
+        bool DOWN;
+        bool LEFT;
+        bool RIGHT;
+        bool A;
+        bool B;
+        bool START;
+        bool SELECT;
+    }Input;
+    const char* BasePath = SDL_GetBasePath();
+    const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
+}
+
+#endif
+#pragma once
+#ifndef _IMG_HPP_
+#define _IMG_HPP_
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+#pragma once
+#ifndef _ENGINE_HPP_
+#define _ENGINE_HPP_
+
+#include <SDL2/SDL.h>
+
+namespace Engine{
+    typedef struct Input{
+        bool UP;
+        bool DOWN;
+        bool LEFT;
+        bool RIGHT;
+        bool A;
+        bool B;
+        bool START;
+        bool SELECT;
+    }Input;
+    const char* BasePath = SDL_GetBasePath();
+    const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
+}
+
+#endif
+
+namespace IMG{
+    int Scale;
+    SDL_Texture* MarioTex;
+    SDL_Texture* BlockTex;
+    SDL_Texture* EnemyTex;
+
+    void Init_IMG(SDL_Renderer* renderer);
+    void Quit_IMG();
+}
+
+#endif
+
+class Mario{
+public:
+    Mario();
+    ~Mario();
+    void Update(SDL_Renderer* renderer, Engine::Input input);
+private:
+    SDL_Point Velocity;
+    SDL_Rect src;
+    SDL_Rect dst;
+    enum Animation{
+        IDLE,
+        RUN,
+        JUMP
+    }Animation;
+    enum PowerUp{
+        SMALL,
+        BIG,
+        FIRE
+    }PowerUp;
+};
+
+#endif
+
+Game::Game(){
+    //initialize:
+    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_TIMER) < 0){
+        printf("ERROR: SDL_Init Failed; %s\n", SDL_GetError());
+    }
+
+    //Make Window:
+    window = SDL_CreateWindow("Title", Engine::Screen.x, Engine::Screen.y, Engine::Screen.w, Engine::Screen.h, SDL_WINDOW_SHOWN);
+    if(window == NULL){
+        printf("ERROR: SDL_CreateWindow Failed; %s\n", SDL_GetError());
+    }
+
+    //Make Renderer:
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if(renderer == NULL){
+        printf("ERROR: SDL_CreateRenderer Failed; %s\n", SDL_GetError());
+    }
+}
+
+Game::~Game(){
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    SDL_Quit();
+}
+
+void Game::Loop(){
+    if(!Paused){
+        Mario mario;
+
+        bool running = true;
+        SDL_Event event;
+        while(running){
+            //Input:
+            while(SDL_PollEvent(&event)){
+                //running = (event.type != SDL_QUIT);
+                switch(event.type){
+                    case SDL_QUIT:
+                        running = false;
+                        break;
+                    //case SDL_KEYDOWN:
+                    //case SDL_KEYUP:
+                    default:
+                        break;
+                }
+            }
+
+            SDL_RenderClear(renderer);
+
+            //Update:
+            mario.Update(renderer, input);
+
+            SDL_RenderPresent(renderer);
+
+            //Update/Play Music:
+
+            SDL_Delay(1000/60);
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------------*/
+
+#pragma once
+#ifndef _MARIO_HPP_
+#define _MARIO_HPP_
+
+#include <SDL2/SDL.h>
+#pragma once
+#ifndef _ENGINE_HPP_
+#define _ENGINE_HPP_
+
+#include <SDL2/SDL.h>
+
+namespace Engine{
+    typedef struct Input{
+        bool UP;
+        bool DOWN;
+        bool LEFT;
+        bool RIGHT;
+        bool A;
+        bool B;
+        bool START;
+        bool SELECT;
+    }Input;
+    const char* BasePath = SDL_GetBasePath();
+    const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
+}
+
+#endif
+#pragma once
+#ifndef _IMG_HPP_
+#define _IMG_HPP_
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+#pragma once
+#ifndef _ENGINE_HPP_
+#define _ENGINE_HPP_
+
+#include <SDL2/SDL.h>
+
+namespace Engine{
+    typedef struct Input{
+        bool UP;
+        bool DOWN;
+        bool LEFT;
+        bool RIGHT;
+        bool A;
+        bool B;
+        bool START;
+        bool SELECT;
+    }Input;
+    const char* BasePath = SDL_GetBasePath();
+    const int Gravity = 0;
+    const SDL_Rect Screen = {SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720};
+}
+
+#endif
+
+namespace IMG{
+    int Scale;
+    SDL_Texture* MarioTex;
+    SDL_Texture* BlockTex;
+    SDL_Texture* EnemyTex;
+
+    void Init_IMG(SDL_Renderer* renderer);
+    void Quit_IMG();
+}
+
+#endif
+
+class Mario{
+public:
+    Mario();
+    ~Mario();
+    void Update(SDL_Renderer* renderer, Engine::Input input);
+private:
+    SDL_Point Velocity;
+    SDL_Rect src;
+    SDL_Rect dst;
+    enum Animation{
+        IDLE,
+        RUN,
+        JUMP
+    }Animation;
+    enum PowerUp{
+        SMALL,
+        BIG,
+        FIRE
+    }PowerUp;
+};
+
+#endif
+
+Mario::Mario(){
+    Velocity = {0, 0};
+    src = {0, 0, 18, 18};
+    dst = {0, 0, 18 * IMG::Scale, 18 * IMG::Scale};
+    Animation = IDLE;
+    PowerUp = SMALL;
+}
+
+Mario::~Mario(){}
+
+void Mario::Update(SDL_Renderer* renderer, Engine::Input input){
+    //Set Constant Movements
+        //Gravity:
+    Velocity.y = Engine::Gravity;   //TODO: when underwater, make gravity less
+
+    //Apply Input Movement
+    if(input.LEFT){
+        Velocity.x += -10;
+    }
+    if(input.RIGHT){
+        Velocity.x += 10;
+    }
+    if(input.A){}
+    if(input.B){}
+    if(input.DOWN){}    //Make sure to reduce hitbox
+
+    //Check for collision
+        //With border
+    if(dst.y < 0){
+        dst.y = 0;
+    }else if(dst.y > Engine::Screen.h - dst.h){
+        dst.y =  Engine::Screen.h - dst.h;
+    }
+    if(dst.x < 0){
+        dst.x = 0;
+    }else if(dst.x > Engine::Screen.w - dst.w){
+        dst.x =  Engine::Screen.w - dst.w;
+    }
+
+    //Update State and Animation
+
+
+    //Animate
+
+    
+    //Render
+    SDL_RenderCopy(renderer, IMG::MarioTex, &src, &dst);
+}
